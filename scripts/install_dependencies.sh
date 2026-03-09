@@ -4,7 +4,7 @@
 # Import the Linux Version Number Variables
 . /etc/lsb-release
 
-if [ "$DISTRIB_RELEASE" = "20.04" ]; then
+if [ "$DISTRIB_RELEASE" = "24.04" ]; then
 	# Install CAN scripts
 	sudo cp reset_can.sh /bin
 	sudo cp 60-can.rules /etc/udev/rules.d
