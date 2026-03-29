@@ -28,7 +28,7 @@
  * @file hand.cpp
  * @date 11/09/2010
  * @author Dan Cody
- * 
+ *
  */
 
 #include <stdexcept>
@@ -176,7 +176,8 @@ void Hand::setPositionMode(unsigned int whichDigits) const {
 /** setPositionCommand Method */
 void Hand::setPositionCommand(const jp_type& jp, unsigned int whichDigits) const
 {
-	setProperty(whichDigits, Puck::P, (j2pp.array() * jp.array()).matrix());
+	// setProperty(whichDigits, Puck::P, (j2pp.array() * jp.array()).matrix());
+	setProperty(whichDigits, Puck::M, (j2pp.array() * jp.array()).matrix());
 }
 /** setTorqueMode Method */
 void Hand::setTorqueMode(unsigned int whichDigits) const {
@@ -231,7 +232,7 @@ void Hand::update(unsigned int sensors, bool realtime)
 		// For the spread
 		innerJp[SPREAD_INDEX] = outerJp[SPREAD_INDEX] = motorPucks[SPREAD_INDEX].counts2rad(primaryEncoder[SPREAD_INDEX]) / SPREAD_RATIO;
 	}
-	
+
 	if (hasFingertipTorqueSensors()  &&  sensors & S_FINGERTIP_TORQUE) {
 		{
 			BARRETT_SCOPED_LOCK(bus.getMutex());
@@ -241,8 +242,8 @@ void Hand::update(unsigned int sensors, bool realtime)
 		}
 		boost::this_thread::yield();
 	}
-	
-	
+
+
 	if (hasTactSensors()) {
 		if(sensors & S_TACT_FULL){
 			BARRETT_SCOPED_LOCK(bus.getMutex());
