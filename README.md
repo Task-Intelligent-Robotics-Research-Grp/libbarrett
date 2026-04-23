@@ -34,6 +34,46 @@ make
 sudo make install
 ```
 
+### CAN(Controller Area Network)の有効化
+`Barrett`社のデバイスは標準的なシリアル通信プロトコルである`CAN(Controller Area Networks)`を基盤としているので，その設定ファイルをインストールし，`Ubuntu`上で`CAN`を使えるようにする．
+```
+cd libbarrett/scripts
+sudo cp reset_can.sh /usr/local/bin
+sudo cp 60-can.rules /etc/udev/rules.d
+sudo udevadm control --reload
+sudo udevadm trigger
+```
+ここで，USB-CANコンバータ等を介してPCに`CAN`デバイスを接続し，`ip a`コマンドを実行して
+```
+% ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute 
+       valid_lft forever preferred_lft forever
+2: enp130s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether fc:9d:05:32:93:b7 brd ff:ff:ff:ff:ff:ff
+    inet 10.66.171.34/24 brd 10.66.171.255 scope global noprefixroute enp130s0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::fb34:8482:c183:bf15/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: enp132s0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOWN group default qlen 1000
+    link/ether a0:ad:9f:76:12:0a brd ff:ff:ff:ff:ff:ff
+5: wlp129s0f0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether e0:d5:5d:96:00:37 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.232.24/21 brd 192.168.239.255 scope global dynamic noprefixroute wlp129s0f0
+       valid_lft 6933sec preferred_lft 6933sec
+    inet6 fe80::aa36:9c7a:927e:b59a/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+7: can0: <NOARP,UP,LOWER_UP,ECHO> mtu 16 qdisc pfifo_fast state UP group default qlen 10
+    link/can 
+```
+のように`can0`のエントリが表示されれば，`CAN`が有効化されている．
+
+なお，複数のコンバータを接続している場合は，`can0`, `can1`,...のように複数のエントリが表示されるべきである．`can1`以降も有効化するには，上記[reset_can.sh](./scripts/reset_can.sh)に`sudo ip link set...`を追加する必要がある．
+
+
 ### 参考リンク
 - [libbarrett documentation](https://web.barrett.com/libbarrett/index.html)
 - [Barrett Technology社リポジトリ](https://git.barrett.com/software)
