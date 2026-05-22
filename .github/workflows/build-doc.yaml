@@ -5,9 +5,8 @@ jobs:
   build-doc:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        path: libbarrett
+    - name: Checkout
+      uses: actions/checkout@v4
 
     - name: Install dependencies
       run: |
@@ -15,7 +14,6 @@ jobs:
 
     - name: Build documents of libbarrett
       run: |
-        cd ${GITHUB_WORKSPACE}/libbarrett
         doxygen
 
     - name: Upload artifact of libbarrett
