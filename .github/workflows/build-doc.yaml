@@ -21,7 +21,7 @@ jobs:
     - name: Upload artifact of libbarrett
       uses: actions/upload-pages-artifact@v4
       with:
-        path: ./libbarrett/docs/html
+        path: ./docs/html
 
     - name: Deploy to GitHub Pages
       id: deployment
