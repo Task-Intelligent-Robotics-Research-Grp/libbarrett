@@ -34,7 +34,7 @@ jobs:
         cd ./build
         cmake ..
         make
-        make install
+        sudo make install
 
     - name: Build documents of libbarrett
       run: |
