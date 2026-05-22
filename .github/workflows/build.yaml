@@ -1,0 +1,39 @@
+name: build libbarrett
+
+on:
+  workflow_call:
+    inputs:
+      os:
+        required: true
+        type: string
+
+jobs:
+  build_libbarrett:
+    runs-on: ${{ inputs.os }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        path: libbarrett
+
+    - name: apt update and upgrade
+      run: |
+        sudo apt update
+        sudo apt upgrade -y
+
+    - name: Install dependencies
+      run: |
+        sudo apt install libgsl-dev libconfig++-dev
+
+    - name: Patch libconfig
+      run: |
+        cd /usr/include
+	sudo patch < ${GITHUB_WORKSPACE}/libbarrett/libconfig.patch
+
+    - name: Build
+      run: |
+        cd libbarrett
+	mkdir build
+	cd build
+	cmake ..
+	make
+	sudo make install

@@ -1,0 +1,13 @@
+*** libconfig.h++.ORG0	2026-04-20 08:41:31.962424633 +0900
+--- libconfig.h++	2026-04-20 10:08:25.503322203 +090
+***************
+*** 319,324 ****
+--- 319,326 ----
+    const_iterator begin() const;
+    const_iterator end() const;
+  
++   config_setting_t* getCSetting() const { return _setting; }	// Added by T.Ueshiba
++  
+    private:
+  
+    config_setting_t *_setting;

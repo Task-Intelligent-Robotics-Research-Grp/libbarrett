@@ -1,0 +1,8 @@
+name: noble-build
+on: push
+
+jobs:
+  noble-build:
+    uses: ./.github/workflows/build.yaml
+    with:
+      os: ubuntu-24.04

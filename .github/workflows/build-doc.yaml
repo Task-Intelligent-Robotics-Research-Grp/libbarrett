@@ -1,0 +1,33 @@
+name: build-doc
+on: push
+
+jobs:
+  build-doc:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        path: libbarrett
+
+    - name: Install dependencies
+      run: |
+        sudo apt install graphviz doxygen
+
+    - name: Build documents of libbarrett
+      run: |
+        cd ./libbarrett
+        doxygen
+
+    - name: Upload artifact of libbarrett
+      uses: actions/upload-pages-artifact@v4
+      with:
+        path: ./libbarrett/docs/html
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v5
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
