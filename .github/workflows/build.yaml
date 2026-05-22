@@ -35,7 +35,7 @@ jobs:
         cmake ..
         make
         make install
-	
+
     - name: Build documents of libbarrett
       run: |
         doxygen
