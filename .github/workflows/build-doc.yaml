@@ -15,7 +15,7 @@ jobs:
 
     - name: Build documents of libbarrett
       run: |
-        cd ./libbarrett
+        cd ${GITHUB_WORKSPACE}/libbarrett
         doxygen
 
     - name: Upload artifact of libbarrett
