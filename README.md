@@ -1,14 +1,11 @@
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/Task-Intellignet-Robotics-Research-Grp/libbarrett)
-![GitHub](https://img.shields.io/github/license/Task-Intellignet-Robotics-Research-Grp/libbarrett)
-
-| ROS 2 Distribution | Jazzy                                                                                                                                                                    |
+| Ubuntu release | Noble                                                                                                                                                                    |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Build Status       | [![jazzy-build](https://github.com/Task-Intelligent-Robotics-Research-Grp/libbarrett/actions/workflows/noble-build.yaml/badge.svg)](https://github.com/Task-Intelligent-Robotics-Research-Grp/libbarrett/actions/workflows/noble-build.yaml) |
+| Build Status       | [![noble-build](https://github.com/Task-Intelligent-Robotics-Research-Grp/libbarrett/actions/workflows/noble-build.yaml/badge.svg)](https://github.com/Task-Intelligent-Robotics-Research-Grp/libbarrett/actions/workflows/noble-build.yaml) |
 
 # libbarrett
 本パッケージは [Barrett Technology](https://barrett.com/)社の製品を制御するために同社が提供しているライブラリ[libbarrett](https://git.barrett.com/software/libbarrett)に対して．`Ubuntu 24.04`等の最近のLinuxでビルドできるように僅かな修正を加えたものである．新たなブランチ`devel-aist`を切り，そこで修正を行っている．
 
-### インストール方法
+## インストール方法
 まず，次の依存パッケージをインストールする．
 ```
 sudo apt install libgsl-dev libconfig++-dev
@@ -41,7 +38,7 @@ make
 sudo make install
 ```
 
-### CAN(Controller Area Network)の有効化
+## CAN(Controller Area Network)の有効化
 `Barrett`社のデバイスはフィールドバスの標準的なシリアル通信プロトコルである`CAN(Controller Area Networks)`を基盤としており，`libbarrett`は`CAN`を介してデバイスを制御する．`Linux`には`CAN`のカーネルモジュールが含まれているので，初期設定スクリプト[reset_can.sh](./scripts/reset_can.sh)とホスト起動時にそれを呼び出す[60-can.rules](./scripts/60-can.rules)をインストールして`CAN`を使えるようにする．
 ```
 cd libbarrett/scripts
@@ -64,9 +61,11 @@ sudo udevadm trigger
 
 なお，複数のコンバータを接続している場合は，`can0`, `can1`, ...のように複数のエントリが表示されるべきである．`can1`以降も有効化するには，上記[reset_can.sh](./scripts/reset_can.sh)に`sudo ip link set...`を追加する必要がある．
 
+## APIドキュメント
+次のリンクを参照のこと．
+- [libbarrett documentation](https://task-intelligent-robotics-research-grp.github.io/libbarrett/index.html)
 
-### 参考リンク
-- [libbarrett documentation](https://web.barrett.com/libbarrett/index.html)
+## その他の参考リンク
 - [Barrett Technology社リポジトリ](https://git.barrett.com/software)
 - [Barrett Hand製品情報](https://barrett.com/barretthand)
 - [Barrett Hand関連情報](https://longsengao.com/blog/BarrettHand-BH8-282-Manual/)
