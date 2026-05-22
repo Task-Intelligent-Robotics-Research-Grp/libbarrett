@@ -21,7 +21,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt install libgsl-dev libconfig++-dev graphviz doxygen
+        sudo apt install libboost-all-dev libgsl-dev libconfig++-dev graphviz doxygen
 
     - name: Patch libconfig
       run: |
