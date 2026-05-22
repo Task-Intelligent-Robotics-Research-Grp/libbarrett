@@ -1,3 +1,10 @@
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Task-Intellignet-Robotics-Research-Grp/libbarrett)
+![GitHub](https://img.shields.io/github/license/Task-Intellignet-Robotics-Research-Grp/libbarrett)
+
+| ROS 2 Distribution | Jazzy                                                                                                                                                                    |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Build Status       | [![jazzy-build](https://github.com/Task-Intelligent-Robotics-Research-Grp/libbarrett/actions/workflows/noble-build.yaml/badge.svg)](https://github.com/Task-Intelligent-Robotics-Research-Grp/libbarrett/actions/workflows/noble-build.yaml) |
+
 # libbarrett
 本パッケージは [Barrett Technology](https://barrett.com/)社の製品を制御するために同社が提供しているライブラリ[libbarrett](https://git.barrett.com/software/libbarrett)に対して．`Ubuntu 24.04`等の最近のLinuxでビルドできるように僅かな修正を加えたものである．新たなブランチ`devel-aist`を切り，そこで修正を行っている．
 
