@@ -27,7 +27,7 @@ jobs:
     - name: Patch libconfig
       run: |
         cd /usr/include
-	sudo patch < ${GITHUB_WORKSPACE}/libbarrett/libconfig.patch
+        sudo patch < ${GITHUB_WORKSPACE}/libbarrett/libconfig.patch
 
     - name: Build
       run: |
