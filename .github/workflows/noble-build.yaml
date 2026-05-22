@@ -6,3 +6,8 @@ jobs:
     uses: ./.github/workflows/build.yaml
     with:
       os: ubuntu-24.04
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write

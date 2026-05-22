@@ -21,17 +21,30 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt install libgsl-dev libconfig++-dev
+        sudo apt install libgsl-dev libconfig++-dev graphviz doxygen
 
     - name: Patch libconfig
       run: |
         cd /usr/include
         sudo patch < ${{github.workspace}}/libconfig.patch
 
-    - name: Configure CMake
-      run: |
-        cmake -B ${{github.worksapce}}/build -DCMAKE_BUILD_TYPE=Release
-
     - name: Build
       run: |
-        cmkae --build ${{github.workspace}}/build --config Release
+        mkdir build
+	cd ./build
+	cmake ..
+	make
+
+    - name: Build documents of libbarrett
+      run: |
+        doxygen
+
+    - name: Upload artifact of libbarrett
+      uses: actions/upload-pages-artifact@v4
+      with:
+        path: ./docs/html
+
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v5
+
