@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.20)
 
 project(libbarrett)
 set(libbarrett_VERSION_MAJOR 3)
@@ -31,10 +31,10 @@ if (OPTIMIZE_FOR_PROCESSOR)
 	# TODO(dc): Does this turn on sse2 if supported by processor? What about -mfpmath=sse?
 	# WARNING: This option results in frequent segfaults (why?)
 	set(NEW_FLAGS "-march=native -mtune=native")
-	
+
 	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${NEW_FLAGS}")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${NEW_FLAGS}")
-	
+
 	message(STATUS "OPTIMIZE_FOR_PROCESSOR: ${NEW_FLAGS}")
 	set(NEW_FLAGS)  # unset
 endif()
@@ -92,9 +92,9 @@ set(boost_components system thread)
 if (WITH_PYTHON)
 	# Extract major/minor python version
 	string(REPLACE "." ";" VERSION_LIST ${PYTHONLIBS_VERSION_STRING})
-	list(GET VERSION_LIST 0 PYTHONLIBS_VERSION_MAJOR)                                                                                                                             
+	list(GET VERSION_LIST 0 PYTHONLIBS_VERSION_MAJOR)
 	list(GET VERSION_LIST 1 PYTHONLIBS_VERSION_MINOR)
-	
+
 	set(boost_components ${boost_components} python${PYTHONLIBS_VERSION_MAJOR}${PYTHONLIBS_VERSION_MINOR})
 endif()
 message(STATUS "Boost components: ${boost_components}")
@@ -103,7 +103,7 @@ find_package(Boost REQUIRED ${boost_components})
 ## Translate cmake's new "Boost::blah" library naming format to a normal "libboost_blah" name that can be passed to the linker.
 ## TODO(bz): Hunt down anyone who makes stupid changes like this and make them suffer.
 set(boost_libraries "")
-foreach (prop ${Boost_LIBRARIES}) 
+foreach (prop ${Boost_LIBRARIES})
 	get_target_property(lib ${prop} LOCATION)
 	message(STATUS "The name ${prop} has location: ${lib}.")
 	set(boost_libraries ${boost_libraries} ${lib})
@@ -148,7 +148,7 @@ install(DIRECTORY include/
 configure_file(${PROJECT_SOURCE_DIR}/cmake/barrett-config.cmake.in ${PROJECT_SOURCE_DIR}/cmake/barrett-config.cmake
 	ESCAPE_QUOTES @ONLY
 )
-if (CONFIG_DEBIAN)	
+if (CONFIG_DEBIAN)
 	message(STATUS "Using standard barrett-config-non-realtime.cmake for Debian installation.")
 	install(FILES ${PROJECT_SOURCE_DIR}/cmake/debian/barrett-config-non-realtime.cmake
 			DESTINATION share/barrett
@@ -178,9 +178,9 @@ endif()
 #     ... others?
 set(BARRETT_ETC_PATH /etc/barrett)
 configure_file(
-  ${PROJECT_SOURCE_DIR}/include/barrett/config.h.in 
+  ${PROJECT_SOURCE_DIR}/include/barrett/config.h.in
   ${PROJECT_BINARY_DIR}/include/barrett/config.h)
-install(FILES ${PROJECT_BINARY_DIR}/include/barrett/config.h 
+install(FILES ${PROJECT_BINARY_DIR}/include/barrett/config.h
   DESTINATION ${CMAKE_INSTALL_PREFIX}/include/barrett)
 
 set(config_dir ${BARRETT_ETC_PATH})
@@ -276,7 +276,7 @@ if (CONFIG_PACKAGE)
 	set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Barrett Technology C++ real-time controls library")
 	set(CPACK_PACKAGE_DESCRIPTION "Libbarrett is a real-time controls library written in C++ that runs Barrett Technology's products, including the WAM Arm and the BH8-280 BarrettHand.")
 	set(CPACK_PACKAGE_VENDOR "Barrett Technology")
-	set(CPACK_PACKAGE_CONTACT "Barrett Support <support@barrett.com>")	
+	set(CPACK_PACKAGE_CONTACT "Barrett Support <support@barrett.com>")
 
 	set(CPACK_PACKAGE_VERSION_MAJOR "${libbarrett_VERSION_MAJOR}")
 	set(CPACK_PACKAGE_VERSION_MINOR "${libbarrett_VERSION_MINOR}")
@@ -284,9 +284,9 @@ if (CONFIG_PACKAGE)
 	set(CPACK_PACKAGE_FILE_NAME "libbarrett-${libbarrett_VERSION_MAJOR}.${libbarrett_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}_${CMAKE_SYSTEM_PROCESSOR}")
 	set(CPACK_SOURCE_PACKAGE_FILE_NAME "libbarrett-${libbarrett_VERSION_MAJOR}.${libbarrett_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
 	set(CPACK_PACKAGE_DESCRIPTION_FILE "${PROJECT_SOURCE_DIR}/README.txt")
-	set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/COPYING.txt")	
+	set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/COPYING.txt")
 	set(CPACK_SOURCE_IGNORE_FILES "libbarrett_programming_manual.doc;property_list.py;cmake/barrett-config.cmake$;bt-wam*;libbarrett.so*;Doxyfile$;install_manifest.txt;CMakeCache.txt;CMakeFiles/;cmake_install.cmake;^/CPack;.*/_CPack;.*/CPack;/.*\\\\.tar\\\\.gz;/.*\\\\.deb;.project;.cproject;.pyproject;Makefile;//CVS/;/\\\\.svn/;\\\\.swp$")
-	
+
 	set(CPACK_DEBIAN_PACKAGE_NAME "libbarrett-dev")
 	set(CPACK_DEBIAN_PACKAGE_MAINTAINER "${CPACK_PACKAGE_CONTACT}")
 	set(CPACK_DEBIAN_PACKAGE_DEPENDS "libconfig-barrett (>=1.4.5), libboost-thread-dev (>= 1.45.0), libboost-python-dev (>=1.45.0), libgsl0-dev (>=1.14), libncurses5-dev, python-dev (>=2.7)")
@@ -297,7 +297,6 @@ if (CONFIG_PACKAGE)
 	set(CPACK_DEBIAN_PACKAGE_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
 	set(CPACK_DEBIAN_ARCHITECTURE "${CMAKE_SYSTEM_PROCESSOR}")
 	set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_SOURCE_DIR}/cmake/debian/postinst")
-	
+
 	include(CPack)
 endif()
-

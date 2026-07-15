@@ -1,4 +1,4 @@
-name: noble-build
+name: resolute-build
 on: push
 
 jobs:
