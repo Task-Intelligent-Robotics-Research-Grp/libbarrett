@@ -1,0 +1,13 @@
+name: noble-build
+on: push
+
+jobs:
+  noble-build:
+    uses: ./.github/workflows/build.yaml
+    with:
+      os: ubuntu-26.04
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
