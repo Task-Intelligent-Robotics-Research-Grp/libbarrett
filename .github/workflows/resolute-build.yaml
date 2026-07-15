@@ -2,7 +2,7 @@ name: resolute-build
 on: push
 
 jobs:
-  noble-build:
+  resulute-build:
     uses: ./.github/workflows/build.yaml
     with:
       os: ubuntu-26.04
