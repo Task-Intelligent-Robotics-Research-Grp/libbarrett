@@ -1,6 +1,6 @@
 name: resolute-build
 on:
-  push
+  push:
   workflow_dispatch:
   
 jobs:
