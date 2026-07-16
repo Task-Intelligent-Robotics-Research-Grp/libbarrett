@@ -1,6 +1,8 @@
 name: resolute-build
-on: push
-
+on:
+  push
+  workflow_dispatch:
+  
 jobs:
   resulute-build:
     uses: ./.github/workflows/build.yaml
