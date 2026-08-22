@@ -341,7 +341,7 @@ void Wam<DOF>::moveTo(const T& currentPos, /*const typename T::unitless_type& cu
 	boost::thread* threadPtr = new boost::thread(&Wam<DOF>::moveToThread<T>, this, boost::ref(currentPos), /*currentVel,*/ boost::ref(destination), velocity, acceleration, &started, threadPtrFuture);
 	mtThreadGroup.add_thread(threadPtr);
 	threadPtrPromise.set_value(threadPtr);
-	
+
 
 	// wait until move starts
 	while ( !started ) {
@@ -393,7 +393,7 @@ void Wam<DOF>::moveToThread(const T& currentPos, /*const typename T::unitless_ty
 {
 	// Only remove this thread from mtThreadGroup on orderly exit. (Don't remove on exception.)
 	bool removeThread = false;
-	
+
 	try {
 		std::vector<T, Eigen::aligned_allocator<T> > vec;
 		vec.push_back(currentPos);
@@ -406,7 +406,7 @@ void Wam<DOF>::moveToThread(const T& currentPos, /*const typename T::unitless_ty
 		math::TrapezoidalVelocityProfile profile(velocity, acceleration, 0.0, spline.changeInS());
 
 		Ramp time(NULL, 1.0);
-		Callback<double, T> trajectory(boost::bind(boost::ref(spline), boost::bind(boost::ref(profile), _1)));
+		Callback<double, T> trajectory(boost::bind(boost::ref(spline), boost::bind(boost::ref(profile), boost::placeholders::_1)));
 
 		connect(time.output, trajectory.input);
 		trackReferenceSignal(trajectory.output);
@@ -438,7 +438,7 @@ void Wam<DOF>::moveToThread(const T& currentPos, /*const typename T::unitless_ty
 			removeThread = true;
 		}
 	} catch (const boost::thread_interrupted& e) {}
-	
+
 	if (removeThread) {
 		mtThreadGroup.remove_thread(threadPtrFuture.get());
 		delete threadPtrFuture.get();

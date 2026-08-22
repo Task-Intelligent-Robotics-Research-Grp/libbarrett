@@ -72,12 +72,12 @@ int wam_main(int argc, char** argv, ProductManager& pm, systems::Wam<DOF>& wam) 
 
     // instantiate Systems
 	NetworkHaptics nh(pm.getExecutionManager(), remoteHost);
-	
+
 	cp_type center;
 	center << 0.4, -0.3, 0.0;
 	systems::HapticBall ball(center, 0.2);
 	center << 0.35, 0.4, 0.0;
-		
+
 	math::Vector<3>::type size;
 	size << 0.3, 0.3, 0.3;
 	systems::HapticBox box(center, size);
@@ -91,7 +91,7 @@ int wam_main(int argc, char** argv, ProductManager& pm, systems::Wam<DOF>& wam) 
 	systems::ToolForceToJointTorques<DOF> tf2jt;
 
 	jt_type jtLimits(35.0);
-	systems::Callback<jt_type> jtSat(boost::bind(saturateJt<DOF>, _1, jtLimits));
+	systems::Callback<jt_type> jtSat(boost::bind(saturateJt<DOF>, boost::placeholders::_1, jtLimits));
 
 	// configure Systems
 	comp.setKp(kp);
@@ -105,7 +105,7 @@ int wam_main(int argc, char** argv, ProductManager& pm, systems::Wam<DOF>& wam) 
 	systems::modXYZ<cf_type> modforce;
 	modforce.negX();
 	modforce.negY();
-	if(DOF == 3) { 
+	if(DOF == 3) {
 	connect(wam.toolPosition.output, modcp.input);
 	connect(modcp.output, nh.input);
 

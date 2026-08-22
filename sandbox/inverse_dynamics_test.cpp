@@ -129,7 +129,7 @@ int wam_main(int argc, char** argv, ProductManager& pm, systems::Wam<DOF>& wam) 
 //	math::TrapezoidalVelocityProfile profile(0.5, 0.5, 0.0, spline.changeInS());
 
 	systems::Ramp moveTime(pm.getExecutionManager(), 1.0);
-	systems::Callback<double, jp_type> trajectory(boost::bind(boost::ref(spline), boost::bind(boost::ref(profile), _1)));
+	systems::Callback<double, jp_type> trajectory(boost::bind(boost::ref(spline), boost::bind(boost::ref(profile), boost::placeholders::_1)));
 
 	connect(moveTime.output, trajectory.input);
 	wam.trackReferenceSignal(trajectory.output);
