@@ -240,7 +240,7 @@ configure_file(${PROJECT_SOURCE_DIR}/Doxyfile.in ${PROJECT_SOURCE_DIR}/Doxyfile
 	ESCAPE_QUOTES @ONLY
 )
 
-add_subdirectory(programs)
+#add_subdirectory(programs)
 
 # Barrett_DIR allows the examples/CMakeLists.txt and sandbox/CMakeLists.txt to
 # find the correct barrett-config.cmake. There may not be an installed version,

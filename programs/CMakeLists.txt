@@ -1,5 +1,5 @@
 set(programs
-#	gravitycal
+	gravitycal
 	zerocal
 	autotension
 )
