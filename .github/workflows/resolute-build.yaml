@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   
 jobs:
-  resulute-build:
+  resolute-build:
     uses: ./.github/workflows/build.yaml
     with:
       os: ubuntu-26.04
