@@ -8,7 +8,7 @@
 #include <iostream>
 #include <cassert>
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/ref.hpp>
 #include <Eigen/Geometry>
 
@@ -90,7 +90,7 @@ void printPose(boost::tuple<math::Matrix<3,1,units::CartesianPosition>,
 
 template<size_t DOF>
 int wam_main(int argc, char** argv, ProductManager& pm, systems::Wam<DOF>& wam) {
-  BARRETT_UNITS_TEMPLATE_TYPEDEFS(DOF); 
+  BARRETT_UNITS_TEMPLATE_TYPEDEFS(DOF);
   pose_type p1;
   pose_type p2;
   pose_type p3;

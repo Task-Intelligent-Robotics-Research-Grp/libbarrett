@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <native/timer.h>
 
-#include <boost/bind.hpp>
+#include <boost/boost/bind.hpp>
 #include <boost/thread.hpp>
 
 #include <barrett/units.h>

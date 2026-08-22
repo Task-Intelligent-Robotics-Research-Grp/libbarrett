@@ -27,7 +27,7 @@
  * @file real_time_writer-inl.h
  * @date 12/30/2009
  * @author Dan Cody
- *  
+ *
  */
 
 
@@ -36,7 +36,7 @@
 #include <fstream>
 #include <string>
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/thread.hpp>
 #include <boost/lexical_cast.hpp>
 

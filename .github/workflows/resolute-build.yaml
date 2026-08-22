@@ -2,12 +2,13 @@ name: resolute-build
 on:
   push:
   workflow_dispatch:
-  
+
 jobs:
   resolute-build:
     uses: ./.github/workflows/build.yaml
     with:
       os: ubuntu-26.04
+      branch: resolute
 
 permissions:
   contents: write

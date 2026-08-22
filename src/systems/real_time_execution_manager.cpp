@@ -28,7 +28,7 @@
  * @file real_time_execution_manager.cpp
  * @date 12/11/2009
  * @author Dan Cody
- * 
+ *
  */
 
 #include <stdexcept>
@@ -39,7 +39,7 @@
 
 #include <errno.h>
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/lexical_cast.hpp>
 
 #include <barrett/os.h>

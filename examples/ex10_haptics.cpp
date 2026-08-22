@@ -5,7 +5,7 @@
  *      Author: dc
  */
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/tuple/tuple.hpp>
 
 #include <barrett/exception.h>

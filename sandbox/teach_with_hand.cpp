@@ -10,7 +10,7 @@
 #include <string>
 
 #include <boost/ref.hpp>
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/tuple/tuple.hpp>
 #include <boost/thread.hpp>
 

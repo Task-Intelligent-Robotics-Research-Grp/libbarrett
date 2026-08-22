@@ -8,7 +8,7 @@
 #include <string>
 #include <boost/tuple/tuple.hpp>
 #include <boost/ref.hpp>
-#include <boost/bind.hpp>
+#include <boost/boost/bind.hpp>
 #include <boost/thread.hpp>
 //#include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
@@ -55,7 +55,7 @@ bool validate_args(int argc, char** argv) {
 		}
 	case 3:
 		ctrlMode = argv[2];
-		
+
 		if (!stat(argv[1], &buffer)
 				&& (strcmp(ctrlMode, "cc") == 0 || strcmp(ctrlMode, "-cc") == 0
 						|| strcmp(ctrlMode, "vc") == 0

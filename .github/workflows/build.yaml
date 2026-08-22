@@ -18,6 +18,8 @@ jobs:
       run: |
         sudo apt update
         sudo apt upgrade -y
+	with:
+	  ref: ${{ inputs.branch }}
 
     - name: Install dependencies
       run: |
@@ -48,4 +50,3 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v5
-

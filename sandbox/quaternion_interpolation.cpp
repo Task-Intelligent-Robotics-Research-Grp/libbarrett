@@ -8,7 +8,7 @@
 #include <iostream>
 #include <cassert>
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/ref.hpp>
 #include <Eigen/Geometry>
 
