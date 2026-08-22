@@ -6,6 +6,9 @@ on:
       os:
         required: true
         type: string
+      branch:
+        required: true
+        type: string
 
 jobs:
   build_libbarrett:
