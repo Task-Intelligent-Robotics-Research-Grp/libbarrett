@@ -88,7 +88,8 @@ if (WITH_PYTHON)
 endif()
 
 ## Boost
-set(boost_components system thread)
+#set(boost_components system thread)
+set(boost_components thread)
 if (WITH_PYTHON)
 	# Extract major/minor python version
 	string(REPLACE "." ";" VERSION_LIST ${PYTHONLIBS_VERSION_STRING})
