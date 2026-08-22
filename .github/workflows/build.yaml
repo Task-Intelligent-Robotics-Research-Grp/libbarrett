@@ -16,13 +16,13 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        ref: ${{ inputs.branch }}
 
     - name: apt update and upgrade
       run: |
         sudo apt update
         sudo apt upgrade -y
-	with:
-	  ref: ${{ inputs.branch }}
 
     - name: Install dependencies
       run: |
